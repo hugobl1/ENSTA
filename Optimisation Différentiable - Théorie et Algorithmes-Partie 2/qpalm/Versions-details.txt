@@ -1,0 +1,97 @@
+Version 0.4 (September 2014)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Clarification in the stopping criterion: the semantics of
+  'options.rctl' has changed a little.
+  - If 'options.rctl' is set to 'constraint', the solver considers that
+    the user of the solver knows that the QP is feasible and tries to
+    realize feasibility. If it fails, it stops.
+  - If 'options.rctl' is NOT set to 'constraint', the solver considers
+    that the user does not know whether the QP is feasible. First it
+    tries to realize feasibility. If it fails, instead of stopping (like
+    in the case options.rctl == 'constraint'), it tries to realize
+    feasibility of the CFQP.
+- In qpalm_gp: clarification of the detectiion of nonconvexity and
+  unboundedness, and beter computation of the initial curvature
+  curv_init and initial stepsize.
+- Possibility to do several successive GP phases (options.gp_succ =
+  'mt') like in the Moré-Toraldo proposal, which becomes the default
+  option (with mt=1 in qpalm_alsp.m).
+
+TODO
+- Clarification in the update of the augmentation parameter: ...
+- The options.rctl set to 'shifted_constraint' is now operational; it
+  uses the ratio of the constraint changes to update the augmentation
+  parameter.
+
+Version 0.3 (July 2014)
+^^^^^^^^^^^^^^^^^^^^^^^
+- options.lslv deleted (CG is always assumed)
+- The counter of total nb of GP iterations/phases info.gpit has been
+  added.
+- Possibility to use a solver-made diagonal preconditioner for the CG
+  iterations, including for singular situations where the linear system
+  to solve has a non trivial null space.
+- Introduction of a solver-made (possibly singular) Cholesky
+  preconditionner, which can detect direction of unboundedness.
+- Better detection of unboundedness.
+
+Version 0.2.3 (April 2014)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Spelling: hitten -> hit.
+- Change of the computation of activity of inequality constraints, which
+  is now done through an indicator vector II (values -1, 0, 1 for lower
+  active, inactive and upper active bounds) from which WI and VI in
+  qpalm_tcg are deduced.
+- Change in the outputs.
+- Avoiding computation and printings in case there is no bounds on x.
+- All the reasons to break after a GP phase are now considered.
+- The GP phase is successful if it makes a change in the activity of x
+  and y (the latter was forgotten before).
+- The bounds in x and y has been activated in a different manner and the
+  activity is transmitted from one AL sunproblem to the other.
+- The decision to update r is now based on rho_cn when
+  stopping_test_on_c is true and on rho_scn otherwise (instead of taking
+  always the min of the two quantites).
+- lm on entry and return is now the vector of multipliers of length
+  mi+me, associated with the inequality and equality constraints. There
+  is no reason, indeed, to enter the multipliers associated with the
+  bounds on x, which are not used.
+
+Version 0.2.2 (April 2014)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+- The activity of the bound in x is now done using options.dxmin
+  (instead of options.feas).
+- The activity of the bound in y=AI*x is now done using the new
+  options.dymin (instead of options.feas).
+
+Version 0.2.1 (March 2014)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Correct treatment of the case when the starting point is solution
+  (case of bound or inequality constraints).
+
+Version 0.2 (December 2013)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Add the option 'dcrf', which is used to see whther the rounding errors
+  prevail, preventing the stopping test from being realized.
+- Add the option 'feass', tolerance for feasiblity of the closest
+  feasible problem.
+- The augmentation aprameter r is now set by using the minimum of the
+  ratios |c|/|c-| and |sc|/|sc-|.
+
+Version 0.1.1 (November 2013)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Remove the option 'gpph' which duplicated more or less the option
+  'phase'.
+- Cleaning the printings at all verbosity levels (there was a bug with
+  verbosity level 2).
+
+Version 0.1 (November 2013)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Number 238 for SVN on adt-minoqs.
+- Introduction of the inequaliity constraints.
+- Lower and upper bounds on x and AI have been seperated.
+- Add the option 'gpph' which might be useful in developing the
+  software.
+- New test for detecting a direction of unboundedness.
+- Both Armijo's and Goldstein's rules can be used in the linesearch of
+  the GP phase.
