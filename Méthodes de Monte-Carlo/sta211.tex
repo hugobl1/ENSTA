@@ -1,0 +1,1060 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={{[}STA211{]} Ajustement d'une loi de Weibull sur des données de durée de vie d'un composant industriel, avec censures à droite},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{{[}STA211{]} Ajustement d'une loi de Weibull sur des données de durée de
+vie d'un composant industriel, avec censures à droite}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\textbf{\emph{Simulation:}}
+
+\textbf{Question 1:}
+
+Calculons la fonction \(F^{-1}(p|\alpha,\kappa)\):
+
+Soit \(y = F(x) = 1 - exp(-\alpha x^{\kappa})\),
+
+Alors on a: \begin{align}
+ exp(-\alpha x^{\kappa})  &= 1 - y \\
+\Rightarrow  x^{\kappa} &= -\dfrac{\log(1-y)}{\alpha} \\
+ \Rightarrow  x &= \left(-\dfrac{\log(1-y)}{\alpha}\right)^{1/\kappa} 
+\end{align}
+
+Ainsi:
+
+\(F^{-1}(p|\alpha,\kappa)=\left(-\dfrac{\log(1-y)}{\alpha}\right)^{1/\kappa}\)
+
+Nous allons maintenant utiliser la méthode d'inversion générique qui
+nous donne le résultat suivant:
+
+Soit \(U\sim\mathcal U(0,1)\), \(X=F^{-1}(U)\)
+
+Alors, X est distribuée selon F: \[X=F^{-1}(U)\sim F \] Aussi, en
+appliquant ce résultat à notre exercice on a:
+\[X\sim\mathcal W(\alpha,\kappa) \] En prenant simplement:
+\[X=F^{-1}(U|\alpha,\kappa)\] où \(U\sim\mathcal U(0,1)\).
+
+On peut donc en déduire un algorithme de simulation de cette loi basée
+sur l'inversion générique, on génère les réalisations d'une loi uniforme
+\(\mathcal U(0,1)\) auxquelles on applique simplement la fonction
+\(F^{-1}(u|\alpha,\kappa)\), ce qui permet d'obtenir des réalisations
+simulées selon la loi de Weibull.
+
+On programme en R, une fonction permettant de réaliser cette simulation
+et qui nous renvoie n observations issue d'une loi de Weibull de
+paramètres \(\alpha\) et \(\kappa\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{simul_weibull <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n,alpha,kappa)}
+\NormalTok{\{}
+\NormalTok{u =}\StringTok{ }\KeywordTok{runif}\NormalTok{(n,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{) ; }\CommentTok{#simulation d'une uniforme [0,1]}
+\NormalTok{x =}\StringTok{ }\NormalTok{(}\OperatorTok{-}\KeywordTok{log}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{u)}\OperatorTok{/}\NormalTok{alpha)}\OperatorTok{^}\NormalTok{\{}\DecValTok{1}\OperatorTok{/}\NormalTok{kappa\}}
+\KeywordTok{return}\NormalTok{ (x)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+On vérifie cette fonction en comparant ces observations avec celles
+issues de la fonction \emph{rweibull}, on obtient les figures suivantes
+pour \(n=10000\), \(\alpha=1\) et \(\kappa=2\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{simul_weibull}\NormalTok{(}\DecValTok{10000}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{rweibull}\NormalTok{(}\DecValTok{10000}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-2-2.pdf}
+
+Notre fonction semble fonctionner correctement après comparaison des
+histogrammes.
+
+\textbf{Question 2:} Dans cette question, nous réalisons une fonction
+simulant \(n\) observations de la loi de Weibull de paramètres
+\(\alpha\) et \(\kappa\) donnés, censurée au-dessus d'un niveau \(t_0\)
+donné, la fonction renverra le vecteur des données simulées ainsi qu'un
+nombre \(p\) correspondant au nombre d'observations non censurées
+(triées au début du vecteur).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{simul_weibull_censur <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n,alpha,kappa,t0)}
+\NormalTok{\{}
+\NormalTok{  x =}\StringTok{ }\KeywordTok{simul_weibull}\NormalTok{(n,alpha,kappa)}
+\NormalTok{  x=}\KeywordTok{sort}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{lapply}\NormalTok{(x,}\ControlFlowTok{function}\NormalTok{(xi)\{}\KeywordTok{ifelse}\NormalTok{(xi}\OperatorTok{<=}\NormalTok{t0,xi,t0)\})))}
+\NormalTok{  p=}\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(x}\OperatorTok{<}\NormalTok{t0))}
+  \KeywordTok{return}\NormalTok{ (}\KeywordTok{list}\NormalTok{(x,p))}
+\NormalTok{\}}
+
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{simul_weibull_censur}\NormalTok{(}\DecValTok{10000}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{)[[}\DecValTok{1}\NormalTok{]], }\DataTypeTok{main=}\StringTok{"Loi de Weibull censurée"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Données simulées"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/Question 2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{simul_weibull_censur}\NormalTok{(}\DecValTok{10000}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)[[}\DecValTok{1}\NormalTok{]], }\DataTypeTok{main=}\StringTok{"Loi de Weibull censurée"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Données simulées"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/Question 2-2.pdf}
+
+Les histogrammes semblent cohérent, en effet on observe dans les deux
+cas les observations censurées, par une augmentation du nombres de
+réalisations valant 1 sur la première figure (car censure à 1) et d'une
+augmentation du nombres de réalisations valant 2 sur la seconde figure
+(car censure à 2) par rapport à la loi de Weibull calculées
+précédemment.
+
+\#Calcul de la vraisemblance:
+
+\textbf{Question 3:}
+
+La densité de notre variable aléatoire est donnée par :
+\[f(t) = \alpha \kappa t^{\kappa-1} exp(-\alpha t^{\kappa})\]
+
+La log-vraisemblance d'une observation non censurée \(t_i\) est
+simplement donnée par la formule:
+\[log(t_i,\alpha,\kappa,p) = log(\alpha) + log(\kappa) + (\kappa-1)log(t) - \alpha t^{\kappa}\]
+
+Pour une censure à droite, la log-vraisemblance est égale à la fonction
+de queue de la loi de Weibull :
+
+\[log(t_i,\alpha,\kappa,p) = -\alpha t_{0}^{\kappa}\]
+
+D'où, \begin{align}
+l(t_{1:n}| \alpha,\kappa) &= \sum_{i = 1}^{p} log(t_i,\alpha,\kappa,p) +  \sum_{i = p+1}^{n}log(t_i,\alpha,\kappa,p)\\
+
+ &= \sum_{i = 1}^{p} (log(\alpha) + log(\kappa) + (\kappa-1)log(t_i) - \alpha t_{i}^{\kappa}) +\sum_{i = p+1}^{n}-\alpha t_{0}^{\kappa}\\
+
+ &= p(log(\alpha) + log(\kappa)) +\sum_{i = 1}^{p} (\kappa-1)log(t_i) -\sum_{i = 1}^{p} \alpha t_{i}^{\kappa}  - (n-p)\alpha t_{0}^{\kappa}\\
+\end{align}
+
+Donc, la log-vraisemblance dans le modèle de Weibull dont les \(n-p\)
+premières données sont censurées à droites, s'écrit:
+
+\[l(t_{1:n}| \alpha,\kappa) = p(log(\alpha) + log(\kappa)) +\sum_{i = 1}^{p} (\kappa-1)log(t_i) -\sum_{i = 1}^{n} \alpha t_{i}^{\kappa}\]
+
+\textbf{Question 4:}
+
+Calculons l'expression exacte du gradient de la log-vraisemblance:
+
+La dérivée par rapport au paramètre \(\alpha\) vaut:
+\[\dfrac{\partial l}{\partial \alpha} = \dfrac{p}{\alpha} - \sum_{i = 1}^{n} t_{i}^{\kappa}\]
+
+La dérivée par rapport au paramètre \(\kappa\) vaut:
+\[\dfrac{\partial l}{\partial \kappa} = \dfrac{p}{\kappa} +\sum_{i = 1}^{p}log(t_{i}) - \alpha\kappa\sum_{i = 1}^{n}t_{i}^{\kappa-1}\]
+
+Ainsi, le gradient de la log-vraisemblance a pour expression:
+\[\nabla l=\begin{pmatrix}
+\dfrac{p}{\alpha} - \sum_{i = 1}^{n} t_{i}^{\kappa}\\
+\dfrac{p}{\kappa} +\sum_{i = 1}^{p}log(t_{i}) - \alpha\kappa\sum_{i = 1}^{n}t_{i}^{\kappa-1}
+\end{pmatrix}\]
+
+La matrice hessienne a l'expression suivante :
+
+\[\begin{pmatrix}
+\dfrac{\partial ^{2}l}{\partial \alpha^{2}} & \dfrac{\partial^{2} l}{\partial\alpha\partial\kappa} \\ \dfrac{\partial^{2} l}{\partial\kappa\partial\alpha}
+ & \dfrac{\partial ^{2}l}{\partial \kappa^{2}} \\
+\end{pmatrix} = \begin{pmatrix} -\dfrac{p}{\alpha^{2}} & - \kappa\sum_{i = 1}^{n}t_{i}^{\kappa-1} \\ -\kappa \sum_{i = 1}^{n}t_{i}^{\kappa-1} & -\dfrac{p}{\kappa^{2}} -\alpha\sum_{i = 1}^{n}t_{i}^{\kappa-1} - \alpha \kappa (\kappa-1)\sum_{i = 1}^{n}t_{i}^{\kappa-2}   \\\end{pmatrix}\]
+
+\textbf{\emph{Approche fréquentiste}}
+
+\textbf{Question 5} Les estimateurs de maximum de vraisemblance
+vérifient les relations suivantes
+\[\dfrac{\partial l}{\partial \alpha} = 0\] et:
+\[\dfrac{\partial l}{\partial \kappa} = 0\]
+
+(De plus, le hessien est définie négatif pour les estimateurs du maximum
+de vraisemblance.) On peut déduire de l'annulation de la dérivée par
+rapport à \(\alpha\) la relation suivante:
+\[\dfrac{p}{\hat{\alpha}_{MLE}} - \sum_{i = 1}^{n} t_{i}^{\hat{\kappa}_{MLE}} = 0\]
+
+D'où l'on conclut que l'estimateur \(\alpha_{MLE}\) peut se déduire de
+l'estimateur du maximum de vraisemblance \(\kappa_{MLE}\) à l'aide de la
+formule suivante:
+
+\[\hat{\alpha}_{MLE} = \dfrac{p}{\sum_{i = 1}^{n} t_{i}^{\hat{\kappa}_{MLE}}}\]
+Par ailleurs, sachant que c'est cette valeur de \(\alpha\) qui maximise
+la vraisemblance, on peut désormais maximiser la vraisemblance en
+remplaçant \(\alpha\) par
+\(\dfrac{p}{\sum_{i = 1}^{n} t_{i}^{\kappa}}\).
+
+Aussi, pour trouver \(\hat{\kappa}_{MLE}\) il suffit de résoudre le
+problème d'optimisation en 1D suivant:
+\[\hat{\kappa}_{MLE}=argmax_{\kappa}(l(t_{1:n}| \dfrac{p}{\sum_{i = 1}^{n} t_{i}^{\kappa}},\kappa))\]
+
+\textbf{Question 6:} On utilise la fonct \emph{optimize} pour trouver la
+solution du problème précédent et on écrit la fonction \emph{maxvraise}
+qui permet de calculer les estimateurs du maximum de vraisemblance de
+(\(\alpha\),\(\kappa\)):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weibullcensLogLik<-}\ControlFlowTok{function}\NormalTok{(alpha,kappa,t,p)}
+\NormalTok{\{}
+  \KeywordTok{return}\NormalTok{ (p}\OperatorTok{*}\NormalTok{(}\KeywordTok{log}\NormalTok{(alpha)}\OperatorTok{+}\KeywordTok{log}\NormalTok{(kappa))}\OperatorTok{+}\NormalTok{(kappa}\DecValTok{-1}\NormalTok{)}\OperatorTok{*}\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(t)[}\DecValTok{1}\OperatorTok{:}\NormalTok{p])}\OperatorTok{-}\NormalTok{alpha}\OperatorTok{*}\KeywordTok{sum}\NormalTok{(t}\OperatorTok{^}\NormalTok{kappa))}
+\NormalTok{\}}
+\NormalTok{maxvraise<-}\ControlFlowTok{function}\NormalTok{(t,p)\{}
+\NormalTok{  kappaopt=}\StringTok{ }\KeywordTok{optimize}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(kappa)\{}\KeywordTok{return}\NormalTok{ (}\KeywordTok{weibullcensLogLik}\NormalTok{(p}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(t}\OperatorTok{^}\NormalTok{kappa),kappa,t,p))\},}\DataTypeTok{interval =} \KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\DecValTok{0}\NormalTok{, }\DataTypeTok{to=}\DecValTok{20}\NormalTok{,}\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{), }\DataTypeTok{maximum =} \OtherTok{TRUE}\NormalTok{)}\OperatorTok{$}\NormalTok{maximum}
+\NormalTok{  alpha=p}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(t}\OperatorTok{^}\NormalTok{kappaopt)}
+  \KeywordTok{return}\NormalTok{ (}\KeywordTok{list}\NormalTok{(alpha,kappaopt))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Question 7:} On peut maintenant estimer (\(\alpha\),\(\kappa\))
+par maiximum de vraisemblance 100 fois, à partir de 100 jeu de données
+simulés selon la loi de Weibull censurée à \(t_0\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha=}\DecValTok{5}
+\NormalTok{kappa=}\DecValTok{2}
+\NormalTok{t0=}\StringTok{ }\NormalTok{(}\OperatorTok{-}\KeywordTok{log}\NormalTok{(}\DecValTok{1}\FloatTok{-0.6}\NormalTok{)}\OperatorTok{/}\NormalTok{alpha)}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{kappa)}
+\NormalTok{n=}\DecValTok{1000}
+\NormalTok{alphaest=}\KeywordTok{c}\NormalTok{()}
+\NormalTok{kappaest=}\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  x=}\KeywordTok{simul_weibull_censur}\NormalTok{(n,alpha,kappa,t0)}
+\NormalTok{  t=x[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{  p=x[[}\DecValTok{2}\NormalTok{]]}
+\NormalTok{  abmaxvr=}\KeywordTok{maxvraise}\NormalTok{(t,p)}
+\NormalTok{  alphaest=}\KeywordTok{c}\NormalTok{(alphaest,abmaxvr[[}\DecValTok{1}\NormalTok{]])}
+\NormalTok{  kappaest=}\KeywordTok{c}\NormalTok{(kappaest,abmaxvr[[}\DecValTok{2}\NormalTok{]])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+On calcule ensuite le biais de l'estimateur de alpha et de kappa:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{biais_alpha=}\KeywordTok{mean}\NormalTok{(alphaest)}\OperatorTok{-}\NormalTok{alpha}
+\NormalTok{biais_kappa=}\KeywordTok{mean}\NormalTok{(kappaest)}\OperatorTok{-}\NormalTok{kappa}
+\NormalTok{biais_alpha}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01960185
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{biais_kappa}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.004087517
+\end{verbatim}
+
+Puis la variance des deux estimateurs:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{var_alpha<-}\KeywordTok{mean}\NormalTok{((alphaest}\OperatorTok{-}\KeywordTok{mean}\NormalTok{(alphaest))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{var_beta<-}\KeywordTok{mean}\NormalTok{((kappaest}\OperatorTok{-}\KeywordTok{mean}\NormalTok{(kappaest))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{var_alpha}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1632623
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{var_beta}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.004837454
+\end{verbatim}
+
+Et enfin, on calcule leur coefficient de variation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv_alpha<-}\KeywordTok{mean}\NormalTok{((alphaest}\OperatorTok{-}\KeywordTok{mean}\NormalTok{(alphaest))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\KeywordTok{mean}\NormalTok{(alphaest)}
+\NormalTok{cv_beta<-}\KeywordTok{mean}\NormalTok{((kappaest}\OperatorTok{-}\KeywordTok{mean}\NormalTok{(kappaest))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\KeywordTok{mean}\NormalTok{(kappaest)}
+\NormalTok{cv_alpha}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.03252496
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv_beta}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.002413794
+\end{verbatim}
+
+On retrouve bien un biais proche de zéro ce qui est logique pour un
+estimateur du maximum de vraisemblance (asymptotiquement sans biais). De
+plus, la variance semble tendre vers 0 ce qui est aussi cohérent avec
+notre EMV. Le coefficient de variation est relativement faible ce qui
+traduit une dispersion assez faible. La méthode de simulation semble
+efficace
+
+\textbf{\emph{Approche bayésienne}}
+
+\textbf{Question 8:}
+
+Montrer que si la loi a priori de \(\alpha\) est la distribution de
+Gamma \(\mathcal G(a, b)\), alors la loi a posteriori conditionnelle de
+\(\alpha\) sachant κ, notée \(\pi(α|κ, t_{1:n}, p)\) est encore une loi
+Gamma, dont on précisera les paramètres.
+
+Le théorème de Bayes nous donne la relation suivante :
+\(\pi(\alpha|\kappa,t_{1:n},p) \propto \mathcal{L(t_{1:n}|\alpha,\kappa,p)}\times\pi(\alpha)\)
+
+Supposons que : \[\pi(\alpha) \propto \alpha^{a-1}e^{-b\alpha}\]
+
+Alors, la densité a posteriori de λ est proportionnelle vérifie
+\(\pi(\alpha|\kappa,t_{1:n},p) \propto \mathcal{L(t_{1:n}|\alpha,\kappa,p)}\alpha^{a-1}e^{-b\alpha}\)
+
+Or
+\(\mathcal{L(t_{1:n}|\alpha,\kappa,p)} = \alpha^{p} \times \kappa^{p} \prod_{i = 1}^{p} t_{i}^{\kappa-1} \times e^{-\sum_{i = 1}^{n} \alpha t_{i}^{\kappa}} \propto a^{p}\times e^{-\sum_{i = 1}^{n} \alpha t_{i}^{\kappa}}\)
+
+D'où
+\(\pi(\alpha) \propto \alpha^{a-1}e^{-b\alpha} \times a^{p} e^{-\sum_{i = 1}^{n} \alpha t_{i}^{\kappa}}\)
+
+D'où
+\(\pi(\alpha) \propto \alpha^{a+p-1}e^{-\alpha(b+\sum_{i = 1}^{n} t_{i}^{\kappa})}\)
+
+Ce qui montre que la loi a posteriori suit une loi Gamma
+\(\mathcal{G(a+p,b+\sum_{i = 1}^{n} t_{i}^{\kappa})}\)
+
+Dans la suite, on prendra de même une loi a priori de type Gamma pour
+\(\kappa\), de paramètres c et d, et on utilisera le choix ``faiblement
+informatif'' suivant : a = b = c = d = 10−3.
+
+\textbf{Question 9}
+
+Montrons que la densité marginale a posteriori de κ est proportionnelle
+à :
+\[\pi(\kappa|t_{1:n},p) \propto \pi(\kappa)\kappa^{p}\prod_{i=1}^{p}t_{i}^{\kappa-1}(b+\sum_{i = 1}^{n}t_{i}^{\kappa})^{-(a+p)}\]
+
+On a la relation suivante :
+\[\pi(\kappa|,t_{1:n},\alpha,p) \pi(\alpha |t_{1:n},p )  = \pi(\kappa | t_{1:n},p)\]
+
+D'où
+\[\pi(\kappa|,t_{1:n},p)  = \dfrac{\pi(\kappa,\alpha ,t_{1:n},p)}{\pi(\alpha | t_{1:n},p)}\]
+
+On applique alors le théorème de Bayes :
+\[\pi(\kappa,\alpha | t_{1:n},p) \propto \mathcal{L(t_{1:n}|\kappa,\alpha)}\pi(\kappa)\pi(\alpha)\]
+
+D'où
+\[\pi(\kappa | t_{1:n},p) \propto \dfrac{\pi(\alpha)\pi(\kappa) \mathcal{L(t_{1:n}|\kappa,\alpha)}}{\pi(\alpha|\kappa,t_{1:n})}\]
+
+\[\pi(\kappa | t_{1:n},p) \propto \dfrac{\pi(\kappa)\alpha^{a-1}e^{-b\alpha}\kappa^{p}\prod_{i=1}^{p} t_{i}^{\kappa-1}e^{-\alpha\sum_{i=1}^{n}t_{i}^{\kappa}}}{\alpha^{a+p-1}e^{-\alpha(b+\sum_{i = 1}^{n} t_{i}^{\kappa})}(b+\sum_{i = 1}^{n} t_{i}^{\kappa})^{a+p}}\]
+D'où
+\[\pi(\kappa | t_{1:n},p) \propto \pi(\kappa) \kappa^{p} \prod_{i=1}^{p} t_{i}^{\kappa-1}(b+\sum_{i = 1}^{n} t_{i}^{\kappa})^{-(a+p)}\]
+
+\textbf{(a)}
+
+Montrons en supposant \(t_{max} = \max t_{i} > 1\) les équivalents
+suivants (à une constante multiplicative près):
+
+\[\pi(\kappa|t_{1:n},p) \sim_{\kappa\to0 } \pi(\kappa)\kappa^{p}\]
+Lorsque \(\kappa \to 0\) on a
+\[\prod_{i=1}^{p} t_{i}^{\kappa-1} \to \prod_{i=1}^{p} t_{i}^{-1} \] Et
+\[(b+\sum_{i = 1}^{n} t_{i}^{\kappa})^{-(a+p)} \to (b+n)^{-(a+p)}\] Ces
+termes ne dépendent plus de \(\kappa\), d'où le résultat souhaité :
+
+\[\pi(\kappa|t_{1:n},p) \sim_{\kappa\to0 } \pi(\kappa)\kappa^{p} \]
+Montrons désormais que:
+\[\pi(\kappa|t_{1:n},p) \sim_{\kappa\to \infty } \pi(\kappa)t_{max}^{\kappa(a+n)}\]
+
+Ce qui revient à montrer que pour \(\kappa\to \infty\) on a
+\[\dfrac{\pi(\kappa|t_{1:n},p)}{\pi(\kappa)t_{max}^{\kappa(a+p)}} \to 1 \]
+
+Pour \(\kappa\to \infty\) on a
+\[\lim_{\kappa\to \infty} \dfrac{\pi(\kappa|t_{1:n},p)}{\pi(\kappa)\prod_{i=1}^{p}t_{i}^{\kappa-1}t_{max}^{\kappa(a+p)}} = \lim_{\kappa\to \infty} (\dfrac{b+\sum_{i = 1}^{n} t_{i}^{\kappa}}{t_{max}^{\kappa}})^{-(a+p)} = 1\]
+
+Donc:
+\[\pi(\kappa|t_{1:n},p) \sim  \pi(\kappa)\prod_{i=1}^{p}t_{i}^{\kappa-1}t_{max}^{\kappa(a+p)}\]
+
+Déterminons les conditions sur e et f pour que le quotient avec
+\(g(\kappa | e,f)\) reste borné. On veut que les limites au voisinage de
+0 et \(+ \infty\) soient nulles pour avoir le rapport
+\(\dfrac{\pi(\kappa| t_{1:n})}{g(\kappa)}\) soit borné sur
+\(\mathbb{R}\)
+
+\[\dfrac{\pi(\kappa| t_{1:n})}{g(\kappa)} \sim \dfrac{\kappa^{c-1}e^{-d\kappa}\kappa^{p}}{\kappa^{e-1}e^{-f\kappa}} \]
+On doit avoir \(e \le p+c\) pour avoir
+\(\dfrac{\pi(\kappa| t_{1:n})}{g(\kappa)}\) borné au \(\mathcal{V}(0)\)
+
+On obtient la condition sur f en raisonnant de manière analogue pour
+\(\kappa \to \infty\) On doit avoir le rapport
+\(\dfrac{\pi(\kappa| t_{1:n})}{g(\kappa)}\) borné au
+\(\mathcal{V}(\infty)\)
+
+\[\dfrac{\pi(\kappa| t_{1:n})}{g(\kappa)} \sim \dfrac{\kappa^{c-1}e^{-d\kappa}\kappa^{p}e^{-\kappa (a+p) \log (t_{max})}e^{(\kappa-1)\sum_{i=1}^{p}\log(t_{i})}}{\kappa^{e-1}e^{-f\kappa}} \]
+
+On doit avoir \(f < d + (a+p)\log(t_{max}) - \sum_{i=1}^{p}\log(t_{i})\)
+ou \(f = d + (a+p)\log(t_{max}) - \sum_{i=1}^{p}\log(t_{i})\) et
+\(e\geq c\) pour avoir \(\dfrac{\pi(\kappa| t_{1:n})}{g(\kappa)}\) borné
+au \(\mathcal{V}(\infty)\)
+
+\textbf{(b)} On effectue le calcul de \(\hat{\kappa}_{MAP}\) à l'aide de
+la fonction \emph{optimize}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a=}\FloatTok{1e-3}
+\NormalTok{b=}\FloatTok{1e-3}
+\NormalTok{c=}\FloatTok{1e-3}
+\NormalTok{d=}\FloatTok{1e-3}
+\NormalTok{p=}\DecValTok{6}
+\NormalTok{n=}\DecValTok{10}
+\NormalTok{t=}\KeywordTok{sort}\NormalTok{(df[,}\DecValTok{2}\NormalTok{])}
+\NormalTok{neg_log_post =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kappa)\{}
+   \OperatorTok{-}\StringTok{ }\KeywordTok{dgamma}\NormalTok{(kappa, c, d, }\DataTypeTok{log=}\OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(a}\OperatorTok{+}\NormalTok{p) }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{((b }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(t}\OperatorTok{^}\NormalTok{kappa))) }\OperatorTok{-}\StringTok{ }\NormalTok{p }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(kappa) }\OperatorTok{-}\StringTok{ }\NormalTok{(kappa}\DecValTok{-1}\NormalTok{) }\OperatorTok{*}\StringTok{  }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(t[}\DecValTok{1}\OperatorTok{:}\NormalTok{p]))}
+\NormalTok{\}}
+
+
+\NormalTok{o =}\StringTok{ }\KeywordTok{optimize}\NormalTok{(neg_log_post, }\DataTypeTok{interval=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\DecValTok{10}\NormalTok{) )}
+\NormalTok{hat_kappa_MAP =}\StringTok{ }\NormalTok{o}\OperatorTok{$}\NormalTok{minimum }
+\NormalTok{hat_kappa_MAP}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.052583
+\end{verbatim}
+
+Par la suite, on calcule \(\hat{\sigma}_{\hat{\kappa}_{MAP}}^2\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(numDeriv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'numDeriv' was built under R version 4.0.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hat_prec_kappa =}\StringTok{ }\KeywordTok{hessian}\NormalTok{(neg_log_post, hat_kappa_MAP)}
+\NormalTok{hat_v_kappa =}\StringTok{ }\DecValTok{1}\OperatorTok{/}\NormalTok{hat_prec_kappa}
+\NormalTok{hat_v_kappa}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 0.169822
+\end{verbatim}
+
+\textbf{(c)}
+
+On choisit la loi instrumentale \(g \sim \mathcal{G}(e,f)\) de manière à
+ce qu'on ait les relations suivantes pour fixé l'espérance et la
+variance de la loi comme demandé dans l'énoncé:
+
+\[\dfrac{e}{f} = \hat{\kappa}_{MAP}\] et
+\[\dfrac{e}{f^{2}} = \hat{\sigma}_{MAP}^2 \]
+
+On obtient \[\dfrac{\hat{\kappa}_{MAP}}{\hat{\sigma}_{MAP}^2} = f \] et
+\[\dfrac{\hat{\kappa}_{MAP}^{2}}{\hat{\sigma}_{MAP}^2}  = e\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{e =}\StringTok{ }\NormalTok{hat_kappa_MAP}\OperatorTok{^}\DecValTok{2} \OperatorTok{/}\StringTok{ }\NormalTok{hat_v_kappa}
+\NormalTok{f =}\StringTok{ }\NormalTok{hat_kappa_MAP }\OperatorTok{/}\StringTok{ }\NormalTok{hat_v_kappa}
+\CommentTok{# verification des conditions :}
+\ControlFlowTok{if}\NormalTok{ (( e }\OperatorTok{<=}\StringTok{ }\NormalTok{p }\OperatorTok{+}\StringTok{ }\NormalTok{c ) }\OperatorTok{&}\StringTok{ }\NormalTok{((f }\OperatorTok{<}\StringTok{ }\NormalTok{(a}\OperatorTok{+}\NormalTok{p)}\OperatorTok{*}\KeywordTok{log}\NormalTok{(}\KeywordTok{max}\NormalTok{(t))}\OperatorTok{+}\NormalTok{d}\OperatorTok{-}\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(t)[}\DecValTok{1}\OperatorTok{:}\NormalTok{p]))}\OperatorTok{|}\NormalTok{((e }\OperatorTok{>=}\StringTok{ }\NormalTok{c)}\OperatorTok{&}\NormalTok{(f }\OperatorTok{==}\StringTok{ }\NormalTok{(a}\OperatorTok{+}\NormalTok{p)}\OperatorTok{*}\KeywordTok{log}\NormalTok{(}\KeywordTok{max}\NormalTok{(t))}\OperatorTok{+}\NormalTok{d}\OperatorTok{-}\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(t)[}\DecValTok{1}\OperatorTok{:}\NormalTok{p])))))\{}
+ \KeywordTok{print}\NormalTok{(}\StringTok{"loi instrumentale conforme"}\NormalTok{)}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{\{}
+ \KeywordTok{print}\NormalTok{(}\StringTok{"loi instrumentale non conforme"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "loi instrumentale non conforme"
+\end{verbatim}
+
+\textbf{(d)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{func =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(kappa)\{}
+\KeywordTok{return}\NormalTok{(}\OperatorTok{-}\KeywordTok{neg_log_post}\NormalTok{(kappa) }\OperatorTok{-}\StringTok{ }\KeywordTok{dgamma}\NormalTok{(kappa,e,f,}\DataTypeTok{log=}\OtherTok{TRUE}\NormalTok{))}
+\CommentTok{#-neg_log_post(kappa)-dgamma(kappa,e,f,log=TRUE)}
+\NormalTok{\} }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{o=}\KeywordTok{optimize}\NormalTok{(func,}\DataTypeTok{interval=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\DecValTok{10}\NormalTok{), }\DataTypeTok{maximum=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{logM =}\StringTok{ }\NormalTok{o}\OperatorTok{$}\NormalTok{objective}
+\NormalTok{M=}\KeywordTok{exp}\NormalTok{(logM)}
+\NormalTok{M}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.247696e-12
+\end{verbatim}
+
+\textbf{Question 10}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{acceptation_rejet_kappa <-}\ControlFlowTok{function}\NormalTok{(n_simu)}
+\NormalTok{\{}
+\NormalTok{  n_accept=}\DecValTok{0}
+\NormalTok{  n_generer=}\DecValTok{0}
+\NormalTok{  X <-}\KeywordTok{c}\NormalTok{()}
+  \ControlFlowTok{while}\NormalTok{ (n_accept}\OperatorTok{<}\NormalTok{n_simu)}
+\NormalTok{  \{}
+\NormalTok{    n_generer=n_generer}\OperatorTok{+}\DecValTok{1}
+\NormalTok{    Xi <-}\KeywordTok{rgamma}\NormalTok{(}\DecValTok{1}\NormalTok{,e,f)}
+\NormalTok{    ui <-}\KeywordTok{runif}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{    pi =}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\KeywordTok{neg_log_post}\NormalTok{(Xi)) }\CommentTok{#il faut calculer pi(k | ti,p)}
+
+\NormalTok{    Ri <-}\StringTok{ }\NormalTok{pi}\OperatorTok{/}\NormalTok{(M}\OperatorTok{*}\KeywordTok{dgamma}\NormalTok{(Xi,e,f))}
+    \ControlFlowTok{if}\NormalTok{(ui}\OperatorTok{<=}\NormalTok{Ri) }\CommentTok{#si ui est inferieur au rapport alors on conserve Xi}
+\NormalTok{    \{}
+\NormalTok{      n_accept=n_accept}\OperatorTok{+}\DecValTok{1}
+\NormalTok{      X <-}\KeywordTok{c}\NormalTok{(X,Xi)}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  \KeywordTok{return}\NormalTok{ (}\KeywordTok{list}\NormalTok{(}\DataTypeTok{X=}\NormalTok{X, }\DataTypeTok{taux_acceptation=}\NormalTok{ n_simu}\OperatorTok{/}\NormalTok{n_generer))}
+\NormalTok{\}}
+
+\NormalTok{nsimu=}\DecValTok{10000}
+
+\NormalTok{kappa_posteriori=}\KeywordTok{acceptation_rejet_kappa}\NormalTok{(nsimu)}
+\NormalTok{alpha_posteriori=}\KeywordTok{c}\NormalTok{()}
+
+\ControlFlowTok{for}\NormalTok{(kappa }\ControlFlowTok{in}\NormalTok{ kappa_posteriori}\OperatorTok{$}\NormalTok{X )}
+\NormalTok{\{}
+\NormalTok{  alpha=}\KeywordTok{rgamma}\NormalTok{(}\DecValTok{1}\NormalTok{,a}\OperatorTok{+}\NormalTok{p,b}\OperatorTok{+}\KeywordTok{sum}\NormalTok{(t}\OperatorTok{^}\NormalTok{kappa))}
+\NormalTok{  alpha_posteriori=}\KeywordTok{c}\NormalTok{(alpha_posteriori,alpha)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(kappa_posteriori}\OperatorTok{$}\NormalTok{X, }\DataTypeTok{breaks=}\StringTok{"Scott"}\NormalTok{, }\DataTypeTok{probability=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{'$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa$'}\NormalTok{))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dgamma}\NormalTok{(x,c,d), }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(alpha_posteriori, }\DataTypeTok{breaks=}\StringTok{"Scott"}\NormalTok{, }\DataTypeTok{probability=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{'$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{alpha$'}\NormalTok{))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dgamma}\NormalTok{(x,a,b), }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(kappa_posteriori}\OperatorTok{$}\NormalTok{X,alpha_posteriori}\OperatorTok{^}\NormalTok{\{}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\NormalTok{kappa_posteriori}\OperatorTok{$}\NormalTok{X\}, }\DataTypeTok{col=}\StringTok{'blue'}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Graphe }
+\StringTok{des correlations a posteriori"}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa$"}\NormalTok{), }\DataTypeTok{ylab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{alpha^\{-1/}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa\}$"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\textbf{Question 11:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"coda"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'coda' was built under R version 4.0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dweibull<-}\ControlFlowTok{function}\NormalTok{(alpha,kappa,t,p)}
+\NormalTok{\{}
+  \KeywordTok{return}\NormalTok{ (((alpha}\OperatorTok{*}\NormalTok{kappa)}\OperatorTok{^}\NormalTok{p)}\OperatorTok{*}\NormalTok{((}\KeywordTok{prod}\NormalTok{(t[}\DecValTok{1}\OperatorTok{:}\NormalTok{p]))}\OperatorTok{^}\NormalTok{(kappa}\DecValTok{-1}\NormalTok{))}\OperatorTok{*}\NormalTok{(}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{alpha}\OperatorTok{*}\KeywordTok{sum}\NormalTok{(t}\OperatorTok{^}\NormalTok{kappa))))}
+\NormalTok{\}}
+\NormalTok{pi <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)}
+\NormalTok{\{}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{dgamma}\NormalTok{(x,c,d)}\OperatorTok{*}\NormalTok{(x}\OperatorTok{^}\NormalTok{p)}\OperatorTok{*}\KeywordTok{exp}\NormalTok{((x}\DecValTok{-1}\NormalTok{)}\OperatorTok{*}\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(t)))}\OperatorTok{*}\NormalTok{(b}\OperatorTok{+}\KeywordTok{sum}\NormalTok{(t}\OperatorTok{^}\NormalTok{x))}\OperatorTok{^}\NormalTok{(}\OperatorTok{-}\NormalTok{(a}\OperatorTok{+}\NormalTok{p)))}
+\NormalTok{\}}
+
+\NormalTok{MCMC<-}\ControlFlowTok{function}\NormalTok{(t,p,iter,sdnorm,alpha0,kappa0)\{}
+  \CommentTok{##Taux d'acceptation}
+\NormalTok{  accept=}\KeywordTok{vector}\NormalTok{(}\StringTok{"numeric"}\NormalTok{,iter)}
+  \CommentTok{##Valeur courante}
+\NormalTok{  alphac=alpha0}
+\NormalTok{  kappac=kappa0}
+  \CommentTok{##Création de la chaîne de Markov}
+\NormalTok{  alpha_chain=alphac}
+\NormalTok{  kappachain=kappac}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(iter}\DecValTok{-1}\NormalTok{))}
+\NormalTok{  \{}
+    \CommentTok{##Mise à jour}
+    \CommentTok{##Gibbs}
+\NormalTok{    alphacandidat=}\KeywordTok{rgamma}\NormalTok{(}\DecValTok{1}\NormalTok{,a}\OperatorTok{+}\NormalTok{p,b}\OperatorTok{+}\KeywordTok{sum}\NormalTok{(t}\OperatorTok{^}\NormalTok{kappac))}
+    \CommentTok{#Metropolis-Hastings}
+\NormalTok{    kappacandidat=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{mean=}\NormalTok{kappac,}\DataTypeTok{sd=}\NormalTok{sdnorm)}
+\NormalTok{    r=(}\KeywordTok{dgamma}\NormalTok{(kappacandidat,c,d)}\OperatorTok{/}\KeywordTok{dgamma}\NormalTok{(kappac,c,d))}\OperatorTok{*}\NormalTok{(}\KeywordTok{dweibull}\NormalTok{(alphacandidat,kappacandidat,t,p)}\OperatorTok{/}\KeywordTok{dweibull}\NormalTok{(alphac,kappac,t,p))}\OperatorTok{*}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(kappac,}\DataTypeTok{mean=}\NormalTok{kappacandidat,}\DataTypeTok{sd=}\NormalTok{sdnorm)}\OperatorTok{/}\KeywordTok{dnorm}\NormalTok{(kappacandidat,}\DataTypeTok{mean=}\NormalTok{kappac,}\DataTypeTok{sd=}\NormalTok{sdnorm))}
+    \CommentTok{#r=(pi(kappacandidat)/pi(kappac))*(dnorm(kappac,mean=kappacandidat,sd=sdnorm)/dnorm(kappacandidat,mean=kappac,sd=sdnorm))}
+\NormalTok{    u=}\KeywordTok{runif}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{    minr1=}\KeywordTok{min}\NormalTok{(r,}\DecValTok{1}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{((}\OperatorTok{!}\KeywordTok{is.nan}\NormalTok{(minr1))}\OperatorTok{&}\NormalTok{(u}\OperatorTok{<}\NormalTok{minr1))}
+\NormalTok{    \{}
+\NormalTok{      accept[i]=}\DecValTok{1}
+\NormalTok{      kappac=kappacandidat}
+\NormalTok{    \}}
+\NormalTok{    alphac=alphacandidat}
+    \CommentTok{##Stockage des données}
+\NormalTok{    alpha_chain=}\KeywordTok{c}\NormalTok{(alpha_chain,alphac)}
+\NormalTok{    kappachain=}\KeywordTok{c}\NormalTok{(kappachain,kappac)}
+\NormalTok{    \}}
+  \KeywordTok{return}\NormalTok{ (}\KeywordTok{list}\NormalTok{(}\DataTypeTok{acceptrate=}\KeywordTok{mean}\NormalTok{(accept),}\DataTypeTok{result=}\KeywordTok{mcmc}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(kappachain,alpha_chain),}\DataTypeTok{nrow=}\NormalTok{iter,}\DataTypeTok{ncol=}\DecValTok{2}\NormalTok{,}\DataTypeTok{byrow =} \OtherTok{FALSE}\NormalTok{))))}
+\NormalTok{\}}
+
+
+\NormalTok{G=}\DecValTok{10000}
+\NormalTok{delta=}\KeywordTok{seq}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DataTypeTok{by=}\FloatTok{0.1}\NormalTok{)}
+\NormalTok{acceptrates=}\KeywordTok{lapply}\NormalTok{(delta,}\ControlFlowTok{function}\NormalTok{(sdnorm)\{}\KeywordTok{return}\NormalTok{ (}\KeywordTok{MCMC}\NormalTok{(t,p,G, sdnorm,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}\OperatorTok{$}\NormalTok{acceptrate)\})}
+
+\KeywordTok{plot}\NormalTok{(delta,}\KeywordTok{unlist}\NormalTok{(acceptrates),}\DataTypeTok{ylab=}\StringTok{"Taux d'acceptation"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\FloatTok{0.4}\NormalTok{,}\DataTypeTok{col=}\StringTok{'red'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+On obtient la valeur de delta suivante permettant d'obtenir un taux
+d'acceptation de 40\%:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{acceptrates[}\KeywordTok{which.min}\NormalTok{(}\KeywordTok{abs}\NormalTok{(}\FloatTok{0.4}\OperatorTok{-}\KeywordTok{as.numeric}\NormalTok{(acceptrates)))]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 0.4251
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{deltaopt=delta[}\KeywordTok{which.min}\NormalTok{(}\KeywordTok{abs}\NormalTok{(}\FloatTok{0.4}\OperatorTok{-}\KeywordTok{as.numeric}\NormalTok{(acceptrates)))]}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Question 13}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chain1 <-}\StringTok{ }\KeywordTok{MCMC}\NormalTok{(t,p,}\DecValTok{10000}\NormalTok{, deltaopt,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{)}\OperatorTok{$}\NormalTok{result}
+\NormalTok{chain2 <-}\StringTok{ }\KeywordTok{MCMC}\NormalTok{(t,p,}\DecValTok{10000}\NormalTok{, deltaopt,}\FloatTok{1.5}\NormalTok{,}\DecValTok{1}\NormalTok{)}\OperatorTok{$}\NormalTok{result}
+\NormalTok{chain3 <-}\StringTok{ }\KeywordTok{MCMC}\NormalTok{(t,p,}\DecValTok{10000}\NormalTok{, deltaopt,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}\OperatorTok{$}\NormalTok{result}
+\NormalTok{mcmcchains <-}\StringTok{ }\KeywordTok{mcmc.list}\NormalTok{(}\KeywordTok{list}\NormalTok{(chain1,chain2,chain3))}
+\KeywordTok{plot}\NormalTok{(mcmcchains)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{gelman.diag}\NormalTok{(mcmcchains)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]          1          1
+## [2,]          1          1
+## 
+## Multivariate psrf
+## 
+## 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{gelman.plot}\NormalTok{(mcmcchains)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\FloatTok{1.05}\NormalTok{, }\DataTypeTok{col=}\StringTok{"orange"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-18-2.pdf}
+
+Tout d'abord, on peut remarquer que les chaînes se mélangent
+correctement, ainsi il n'y a pas d'indice de non convergence de
+l'algorithme.
+
+De plus, on ne peut pas vraiment conclure sur la convergence avec le
+critère de Gelman-Rubin, en effet il semble qu'il y ait stabilité mais
+il y a quelques pics pour les premières itérations. Il y a peut être un
+très léger problème de convergence au départ car en appliquant le
+critère de Gelman-Rubin, on doit obtenir stabilité et avoir
+R\textless1.05. De plus, il faut noter que la vitesse de convergence
+dépend du point de départ. Une solution est alors d'augmenter le nombre
+d'itérations comme nous le faisons ci-après avec 100 000 itérations.
+
+De plus, pour atteindre l'état stationnaire, on peut supposer d'après
+les courbes ci-dessus que l'on peut prendre à minima 2000 itérations.
+
+Par ailleurs, ci-dessous on augmente le nombre d'itérations pour
+vérifier l'amélioration de la convergence de l'algorithme:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chain1 <-}\StringTok{ }\KeywordTok{MCMC}\NormalTok{(t,p,}\DecValTok{100000}\NormalTok{, deltaopt,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{)}\OperatorTok{$}\NormalTok{result}
+\NormalTok{chain2 <-}\StringTok{ }\KeywordTok{MCMC}\NormalTok{(t,p,}\DecValTok{100000}\NormalTok{, deltaopt,}\FloatTok{1.5}\NormalTok{,}\DecValTok{1}\NormalTok{)}\OperatorTok{$}\NormalTok{result}
+\NormalTok{chain3 <-}\StringTok{ }\KeywordTok{MCMC}\NormalTok{(t,p,}\DecValTok{100000}\NormalTok{, deltaopt,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}\OperatorTok{$}\NormalTok{result}
+\NormalTok{mcmcchains <-}\StringTok{ }\KeywordTok{mcmc.list}\NormalTok{(}\KeywordTok{list}\NormalTok{(chain1,chain2,chain3))}
+\KeywordTok{plot}\NormalTok{(mcmcchains, }\DataTypeTok{density=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{gelman.diag}\NormalTok{(mcmcchains)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Potential scale reduction factors:
+## 
+##      Point est. Upper C.I.
+## [1,]          1          1
+## [2,]          1          1
+## 
+## Multivariate psrf
+## 
+## 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{gelman.plot}\NormalTok{(mcmcchains)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-19-2.pdf}
+
+Tout d'abord, on peut remarquer que les chaînes se mélangent
+correctement, ainsi il n'y a pas d'indice de non convergence de
+l'algorithme.
+
+De plus, en utilisant le critère de Gelman-Rubin, on peut appliquer la
+règle standard car le graphe nous montre qu'il y a stabilité et on peut
+remarquer qu'on a R\textless1.05 à partir d'un certain rang, donc il n'y
+a pas de problème de convergence majeure désormais.
+
+\textbf{Question 14}
+
+On resimule les 10000 réalisations dans un premier temps:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{G1 <-}\StringTok{ }\DecValTok{10000}
+
+\NormalTok{chain1_G1 <-}\StringTok{ }\KeywordTok{MCMC}\NormalTok{(t,p,}\DecValTok{10000}\NormalTok{, deltaopt,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{)}\OperatorTok{$}\NormalTok{result}
+\NormalTok{chain2_G1 <-}\StringTok{ }\KeywordTok{MCMC}\NormalTok{(t,p,}\DecValTok{10000}\NormalTok{, deltaopt,}\FloatTok{1.5}\NormalTok{,}\DecValTok{1}\NormalTok{)}\OperatorTok{$}\NormalTok{result}
+\NormalTok{chain3_G1 <-}\StringTok{ }\KeywordTok{MCMC}\NormalTok{(t,p,}\DecValTok{10000}\NormalTok{, deltaopt,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}\OperatorTok{$}\NormalTok{result}
+\NormalTok{mcmcchains <-}\StringTok{ }\KeywordTok{mcmc.list}\NormalTok{(}\KeywordTok{list}\NormalTok{(chain1_G1,chain2_G1,chain3_G1))}
+\KeywordTok{plot}\NormalTok{(mcmcchains)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+On supprime désormais les itérations correspondant au temps de chauffe,
+et par ailleurs on effectue les différents calculs avec un temps de
+chauffe à 4000:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mcmctc_G1=}\KeywordTok{mcmc.list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{as.mcmc}\NormalTok{(chain1_G1[}\DecValTok{2001}\OperatorTok{:}\DecValTok{10000}\NormalTok{,]),}\KeywordTok{as.mcmc}\NormalTok{(chain2_G1[}\DecValTok{2001}\OperatorTok{:}\DecValTok{10000}\NormalTok{,]),}\KeywordTok{as.mcmc}\NormalTok{(chain3_G1[}\DecValTok{2001}\OperatorTok{:}\DecValTok{10000}\NormalTok{,])))}
+\NormalTok{ESS_G1=}\KeywordTok{effectiveSize}\NormalTok{(mcmctc_G1)}
+\KeywordTok{names}\NormalTok{(ESS_G1)=}\KeywordTok{list}\NormalTok{(}\StringTok{"kappa"}\NormalTok{,}\StringTok{"alpha"}\NormalTok{)}
+\NormalTok{ESS_G1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    kappa    alpha 
+## 1702.207 3073.148
+\end{verbatim}
+
+La taille de l'ESS est faible, c'est peut-être dû à une grande
+auto-corrélation pour nos différentes chaînes MCMC qui réduit fortement
+la taille de l'échantillon a posteriori.On augmente donc par la suite le
+nombre d'itérations G pour pouvoir calculer les densités a posteriori
+avec plus de précision, on effectue donc 100000 itérations, de plus on
+choisit cette fois un temps de chauffe à 25000 afin de ne conserver que
+les observations les plus précises:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mcmctc=}\KeywordTok{mcmc.list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{as.mcmc}\NormalTok{(chain1[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,]),}\KeywordTok{as.mcmc}\NormalTok{(chain2[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,]),}\KeywordTok{as.mcmc}\NormalTok{(chain3[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,])))}
+
+\NormalTok{ESS=}\KeywordTok{effectiveSize}\NormalTok{(mcmctc)}
+
+\KeywordTok{names}\NormalTok{(ESS)=}\KeywordTok{list}\NormalTok{(}\StringTok{"kappa"}\NormalTok{,}\StringTok{"alpha"}\NormalTok{)}
+
+\NormalTok{ESS}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    kappa    alpha 
+## 15777.26 27134.35
+\end{verbatim}
+
+On peut remarquer que l' ESS est désormais supérieur à celui que l'on
+avait obtenu précédemment et on peut donc considérer que l'ESS est
+maintenant ``satisfaisant''.
+
+\textbf{Question 15}
+
+On représente ci-dessous les densités a priori et a posteriori pour
+chaque paramètre, ainsi que le graphe de corrélation a posteriori du
+couple \((\kappa,\alpha^{-1/\kappa})\) puis on compare les résultats
+issus des deux algorithmes d'inférence bayésienne:
+
+Voici le résultats en termes de densités a priori et a posteriori pour
+l'algorithme MCMC:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{mcmc.list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{as.mcmc}\NormalTok{(chain1[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{1}\NormalTok{]),}\KeywordTok{as.mcmc}\NormalTok{(chain2[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{1}\NormalTok{]),}\KeywordTok{as.mcmc}\NormalTok{(chain3[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{1}\NormalTok{]))),}\DataTypeTok{trace=}\OtherTok{FALSE}\NormalTok{,}\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{'$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa$'}\NormalTok{),}\DataTypeTok{ylab=}\StringTok{"Density"}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dgamma}\NormalTok{(x,c,d), }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{mcmc.list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{as.mcmc}\NormalTok{(chain1[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{2}\NormalTok{]),}\KeywordTok{as.mcmc}\NormalTok{(chain2[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{2}\NormalTok{]),}\KeywordTok{as.mcmc}\NormalTok{(chain3[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{2}\NormalTok{]))),}\DataTypeTok{trace=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{'$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{alpha$'}\NormalTok{),}\DataTypeTok{ylab=}\StringTok{"Density"}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dgamma}\NormalTok{(x,a,b), }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-23-2.pdf}
+
+En traçant individuellement les résultats pour les trois chaines, on
+peut aussi voir qu'ils concordent c'est un bon signe de convergence.
+
+Comparaisons des deux algorithmes d'inférences bayesiens:
+
+On a les résultats suivants:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(kappa_posteriori}\OperatorTok{$}\NormalTok{X, }\DataTypeTok{breaks=}\StringTok{"Scott"}\NormalTok{, }\DataTypeTok{probability=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{'$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa$'}\NormalTok{))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dgamma}\NormalTok{(x,c,d), }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(alpha_posteriori, }\DataTypeTok{breaks=}\StringTok{"Scott"}\NormalTok{, }\DataTypeTok{probability=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{'$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{alpha$'}\NormalTok{))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dgamma}\NormalTok{(x,a,b), }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(kappa_posteriori}\OperatorTok{$}\NormalTok{X,alpha_posteriori}\OperatorTok{^}\NormalTok{\{}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\NormalTok{kappa_posteriori}\OperatorTok{$}\NormalTok{X\}, }\DataTypeTok{col=}\StringTok{'blue'}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Graphe }
+\StringTok{des correlations a posteriori"}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa$"}\NormalTok{), }\DataTypeTok{ylab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{alpha^\{-1/}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa\}$"}\NormalTok{))}
+
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-24-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{mcmc.list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{as.mcmc}\NormalTok{(chain1[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{1}\NormalTok{]),}\KeywordTok{as.mcmc}\NormalTok{(chain2[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{1}\NormalTok{]),}\KeywordTok{as.mcmc}\NormalTok{(chain3[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{1}\NormalTok{]))),}\DataTypeTok{trace=}\OtherTok{FALSE}\NormalTok{,}\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{'$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa$'}\NormalTok{),}\DataTypeTok{ylab=}\StringTok{"Density"}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dgamma}\NormalTok{(x,c,d), }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-24-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{mcmc.list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{as.mcmc}\NormalTok{(chain1[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{2}\NormalTok{]),}\KeywordTok{as.mcmc}\NormalTok{(chain2[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{2}\NormalTok{]),}\KeywordTok{as.mcmc}\NormalTok{(chain3[}\DecValTok{25001}\OperatorTok{:}\DecValTok{100000}\NormalTok{,}\DecValTok{2}\NormalTok{]))),}\DataTypeTok{trace=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{'$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{alpha$'}\NormalTok{),}\DataTypeTok{ylab=}\StringTok{"Density"}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dgamma}\NormalTok{(x,a,b), }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-24-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kappalist=mcmctc[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{kappalist=}\KeywordTok{rbind}\NormalTok{(kappalist[[}\DecValTok{1}\NormalTok{]],kappalist[[}\DecValTok{2}\NormalTok{]],kappalist[[}\DecValTok{3}\NormalTok{]])}
+\NormalTok{alphalist=mcmctc[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{alphalist=}\KeywordTok{rbind}\NormalTok{(alphalist[[}\DecValTok{1}\NormalTok{]],alphalist[[}\DecValTok{2}\NormalTok{]],alphalist[[}\DecValTok{3}\NormalTok{]])}
+
+
+
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(kappalist),}\KeywordTok{as.numeric}\NormalTok{(alphalist}\OperatorTok{^}\NormalTok{\{}\OperatorTok{-}\DecValTok{1}\OperatorTok{/}\NormalTok{kappalist\}), }\DataTypeTok{col=}\StringTok{'blue'}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Graphe }
+\StringTok{des correlations a posteriori"}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa$"}\NormalTok{), }\DataTypeTok{ylab=}\KeywordTok{TeX}\NormalTok{(}\StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{alpha^\{-1/}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{kappa\}$"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{sta211_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+On peut remarquer que les résultats renvoyés par les deux algorithmes
+sont globalement similaires que ce soit en terme de densité ou en terme
+de corrélations des variables. En effet, les moyennes et variances ainsi
+que l'aspect global est très semblable. Lorsque l'on compare
+l'application des deux algorithmes, le traitement des données nécessaire
+aux algorithmes MCMC est conséquent en réflexion et en calcul ce qui est
+moins le cas de la première approche bayésienne utilisant le principe
+d'acceptation-rejet. Egalement, du point de vue théorique, l'algorithme
+MCMC demande plus de réflexion pour être appréhendé. Toutefois, ces
+algorithmes ont tout de même des points communs (tests d'acceptation
+d'une valeur candidate à chaque itération). De plus, le fait qu'il y n'y
+ait pas à faire d'optimisation (contrairement à l'acceptation rejet)
+pour trouver de paramètre adéquat, le fait qu'il y ait des résultats de
+convergence théorique et enfin le fait qu'il y ait de nombreuses façons
+de vérifier ses résultats et la propriété de convergence en pratique
+font que l'on préfèrera utiliser l'algorithme MCMC (en plus des
+résultats convenables qu'il fournit ici).
+
+\end{document}
